@@ -1,12 +1,7 @@
 import Joi from "joi";
+import { CreateUser } from "../utils/interfaces/createData";
 
-export const signInSchema = Joi.object({
+export const userSchema = Joi.object<CreateUser>({
   email: Joi.string().email().required(),
   password: Joi.string().required(),
-});
-
-export const signUpSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
-  passwordConfirmation: Joi.string().required(),
 });

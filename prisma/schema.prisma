@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -22,61 +19,55 @@ model User {
 model Category {
   id   Int    @id @default(autoincrement())
   name String @unique
-
   Test Test[]
 
   @@map("categories")
 }
 
 model Test {
-  id                  Int    @id @default(autoincrement())
+  id                  Int               @id @default(autoincrement())
   name                String
   pdfUrl              String
   categoryId          Int
   teacherDisciplineId Int
-
-  categories        Category          @relation(fields: [categoryId], references: [id])
-  TeacherDiscipline TeacherDiscipline @relation(fields: [teacherDisciplineId], references: [id])
+  categories          Category          @relation(fields: [categoryId], references: [id])
+  TeacherDiscipline   TeacherDiscipline @relation(fields: [teacherDisciplineId], references: [id])
 
   @@map("tests")
 }
 
 model TeacherDiscipline {
-  id           Int @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   teacherId    Int
   disciplineId Int
-
-  teachers    Teacher    @relation(fields: [teacherId], references: [id])
-  disciplines Discipline @relation(fields: [disciplineId], references: [id])
-  Test        Test[]
+  disciplines  Discipline @relation(fields: [disciplineId], references: [id])
+  teachers     Teacher    @relation(fields: [teacherId], references: [id])
+  Test         Test[]
 
   @@map("teachersDisciplines")
 }
 
 model Teacher {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-
+  id                Int                 @id @default(autoincrement())
+  name              String              @unique
   TeacherDiscipline TeacherDiscipline[]
 
   @@map("teachers")
 }
 
 model Discipline {
-  id     Int    @id @default(autoincrement())
-  name   String @unique
-  termId Int
-
-  TeacherDiscipline TeacherDiscipline[]
+  id                Int                 @id @default(autoincrement())
+  name              String              @unique
+  termId            Int
   terms             Term                @relation(fields: [termId], references: [id])
+  TeacherDiscipline TeacherDiscipline[]
 
   @@map("disciplines")
 }
 
 model Term {
-  id     Int @id @default(autoincrement())
-  number Int @unique
-
+  id         Int          @id @default(autoincrement())
+  number     Int          @unique
   Discipline Discipline[]
 
   @@map("terms")
