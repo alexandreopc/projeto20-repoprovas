@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "module": "es6",
     "moduleResolution": "node",
     "outDir": "dist"
