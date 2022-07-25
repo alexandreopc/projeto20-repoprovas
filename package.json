@@ -2,6 +2,9 @@
   "name": "projeto20-repoprovas",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.14.0"
+  },
   "main": "index.js",
   "type": "module",
   "scripts": {
